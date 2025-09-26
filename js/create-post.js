@@ -32,12 +32,13 @@ export async function createBlogPost(title, body, url, alt, tags) {
 
     try {
         const nameUser =localStorage.getItem('name');
-        let url = `${base_url}/blog/posts/${nameUser}`;
+        let url = `${base_url}/social/posts`;
         const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+                "X-Noroff-API-Key": '4f20fb44-3b03-4fc3-bc21-5a7fb98d9816'
             },
             body: JSON.stringify(postData)
         });

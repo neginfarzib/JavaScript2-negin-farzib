@@ -2,8 +2,6 @@ import {deleteBlogPost} from "./manage-all-post.js";
 const base_url = "https://v2.api.noroff.dev";
 let postId = '';
 
-deleteBlogPost(postId);
-
 /**
  * Edit blog post
  * @param {string} title - blog post title
@@ -11,9 +9,11 @@ deleteBlogPost(postId);
  * @param {string} url - blog post url
  * @param {string} alt - blog post alt attribute
  * @param {string} tags - blog post tags
+ * @param {number} postId - blog post ID
+ * @return {void}
  *
 * */
-export async function editBlogPost(title, body, url, alt, tags) {
+export async function editBlogPost(title, body, url, alt, tags,postId) {
     const postData = {
         title: title
     };
@@ -34,13 +34,13 @@ export async function editBlogPost(title, body, url, alt, tags) {
     }
 
     try {
-        const nameUser =localStorage.getItem('name');
-        let url = `${base_url}/blog/posts/${nameUser}/${postId}`;
+        let url = `${base_url}/social/posts/${postId}`;
         const response = await fetch(url, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+                "X-Noroff-API-Key": '4f20fb44-3b03-4fc3-bc21-5a7fb98d9816'
             },
             body: JSON.stringify(postData)
         });
@@ -73,30 +73,3 @@ export async function editBlogPost(title, body, url, alt, tags) {
         console.error('An error occurred:', err);
     }
 }
-
-/**
- * Fetching blog port by ID
- * @param {number} blogPostId - blog post ID
- * @return {Promise<object>} post - single post
-* */
-export async function getBlogPost(blogPostId) {
-    try {
-        const nameUser =localStorage.getItem('name');
-        const url = `${base_url}/blog/posts/${nameUser}/${blogPostId}`;
-
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.json();
-        return data.data;
-    } catch (error) {
-
-        const errorMessageElement = document.getElementById('errorMessage');
-        errorMessageElement.style.display = 'block';
-        errorMessageElement.innerHTML = error;
-
-        console.error("Error fetching data:", error);
-    }
-}
-

@@ -441,11 +441,6 @@ footer a {
    font-family: inherit;
 }
 
-.public-post-text-share-icon{
-   display: flex;
-   flex-direction: row-reverse;
-   color: #a19f9f;
-}
 .manage-all-posts{
    width: 70%;
    margin: 50px auto;

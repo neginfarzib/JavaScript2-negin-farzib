@@ -1,12 +1,12 @@
 import {checkIfAuthenticated} from "./auth-check.js";
-import {allPosts, deleteBlogPost} from "./manage-all-post.js";
+import {deleteBlogPost, allMyPosts} from "./manage-all-post.js";
 
 checkIfAuthenticated();
 
 document.addEventListener('DOMContentLoaded',async () => {
     const editPostsThumbnail = document.getElementById('edit-posts-thumbnail');
 
-    const posts = await allPosts();
+    const posts = await allMyPosts();
     displayPosts(posts.data);
 
     function displayPosts(posts){
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded',async () => {
 
             const blogThumbnailHref = document.createElement('a');
             blogThumbnailHref.href = '../post/index.html?blog-post-id='+post.id;
-            blogThumbnailHref.target = '_blank';
+            // blogThumbnailHref.target = '_blank';
 
             const postTitle = document.createElement('h4');
             postTitle.textContent = post.title;

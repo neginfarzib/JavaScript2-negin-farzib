@@ -1,12 +1,14 @@
 import {checkIfAuthenticated} from "./auth-check.js";
-import {getBlogPost,editBlogPost} from "./edit-post.js";
+import {editBlogPost} from "./edit-post.js";
 import {deleteBlogPost} from "./manage-all-post.js";
+import {getBlogPost} from "./post-details.js";
+let postId = 0;
 
 checkIfAuthenticated();
 
 document.addEventListener('DOMContentLoaded',async () => {
     const params = new URLSearchParams(window.location.search);
-    const postId = params.get("blog-post-id");
+    postId = params.get("blog-post-id");
 
     const blogPost = await getBlogPost(postId);
 
@@ -44,7 +46,7 @@ if (editPostForm) {
                 const imageUrl = document.getElementById('blog-post-edit-img-url').value;
                 const imageAltText = document.getElementById('blog-post-edit-img-alt').value;
                 const tags = document.getElementById('blog-post-edit-tags').value;
-                editBlogPost(postTitle, postContent, imageUrl, imageAltText, tags);
+                editBlogPost(postTitle, postContent, imageUrl, imageAltText, tags,postId);
 
             } else if (action === 'delete') {
                 await deleteBlogPost(postId);

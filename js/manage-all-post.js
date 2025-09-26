@@ -7,21 +7,21 @@ const base_url = "https://v2.api.noroff.dev";
 * */
 export async function deleteBlogPostServer(blogPostId) {
     try {
-        const nameUser =localStorage.getItem('name');
-        const url = `${base_url}/blog/posts/${nameUser}/${blogPostId}`;
+        const url = `${base_url}/social/posts/${blogPostId}`;
 
         const response = await fetch(url, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "X-Noroff-API-Key": '4f20fb44-3b03-4fc3-bc21-5a7fb98d9816'
             }
         });
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }else {
-            location.reload();
+            window.location.href = "../post/manage-all-post.html";
         }
     } catch (error) {
         const errorMessageElement = document.getElementById('errorMessage');
@@ -54,6 +54,35 @@ export async function allPosts() {
             }
         }
         const url = `${base_url}/social/posts?_author=true`;
+        const response = await fetch(url, options);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        const errorMessageElement = document.getElementById('errorMessage');
+        errorMessageElement.style.display = 'block';
+        errorMessageElement.innerHTML = error;
+
+        console.error("Error fetching data:", error);
+    }
+}
+
+/**
+ * Fetching all blog posts belonging to me from API-sever
+ * @return {Promise<object[]>} array of post fetched from API-server
+* */
+export async function allMyPosts() {
+    try {
+        const options = {
+            headers: {
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTmVnaW4iLCJlbWFpbCI6Im5lZ2ZhcjQ5NzkxQHN0dWQubm9yb2ZmLm5vIiwiaWF0IjoxNzU4ODgyOTk2fQ.G8SDRfET-9DE5XjOSWjDm2wZCRGwErGQnNPaiXgpWjs',
+                "X-Noroff-API-Key": '4f20fb44-3b03-4fc3-bc21-5a7fb98d9816'
+            }
+        }
+        const nameUser =localStorage.getItem('name');
+        const url = `${base_url}/social/profiles/${name}/posts`;
         const response = await fetch(url, options);
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);

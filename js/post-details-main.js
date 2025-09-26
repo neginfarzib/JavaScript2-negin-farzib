@@ -1,4 +1,5 @@
-import {getBlogPost} from "./post-details";
+import {getBlogPost} from "./post-details.js";
+const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
 document.addEventListener('DOMContentLoaded',async () => {
     const params = new URLSearchParams(window.location.search);
@@ -22,22 +23,7 @@ document.addEventListener('DOMContentLoaded',async () => {
 
     const blogPostDetailsPublishDate = document.getElementById('blog-post-details-publish-date');
     const date = new Date(blogPost.created)
-    blogPostDetailsPublishDate.textContent = date.toLocaleDateString('en-US', options);;
+    blogPostDetailsPublishDate.textContent = date.toLocaleDateString('en-US', options);
 
 
 })
-
-document.addEventListener('DOMContentLoaded', () => {
-    const shareIcon = document.getElementById('share-icon');
-    if (shareIcon) {
-        shareIcon.addEventListener('click', async () => {
-            try {
-                await navigator.clipboard.writeText(window.location.href);
-                alert('URL copied to clipboard!');
-            } catch (err) {
-                console.error('Failed to copy URL:', err);
-                alert('Failed to copy URL. Please try again.');
-            }
-        });
-    }
-});

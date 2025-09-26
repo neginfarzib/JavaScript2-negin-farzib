@@ -1,5 +1,5 @@
 import {checkIfAuthenticated} from "./auth-check.js";
-import {createBlogPost} from "./create-post";
+import {createBlogPost} from "./create-post.js";
 
 checkIfAuthenticated()
 
