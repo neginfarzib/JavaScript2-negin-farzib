@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Manage All Posts | Beauty Buzz Blog</title>
+    <meta name="description"
+          content="">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="10x10" href="/assets/logo.png">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+<header>
+    <input type="checkbox" id="menu-checkbox">
+    <label for="menu-checkbox" class="hamburger-icon"><i class="fa fa-bars"></i></label>
+    <nav>
+        <div id="nav-div-1">
+            <div id="nav-div-2">
+                <img class="logo" src="/assets/logo.png " alt="BeautyBuzzBlog-logo">
+                <a href="../index.html">Home</a>
+                <a href="../about.html">About</a>
+            </div>
+            <div>
+                <a href="#" id="user-name"></a>
+                <a href="../account/login.html">Logout</a>
+            </div>
+        </div>
+    </nav>
+</header>
+<main>
+    <section>
+        <div class="manage-all-posts">
+            <h3>Manage All Posts</h3>
+            <div class="edit-line-separator"></div>
+            <div class="row">
+                <a href="../post/create.html">
+                    <button class="create-post-btn"><i class="fa fa-plus"></i> Create Post</button>
+                </a>
+            </div>
+            <div id="edit-posts-thumbnail">
+                <div class="row">
+                    <p id="errorMessage" ></p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<footer class="row-footer">
+    <div class="footr-column">
+        <a href="../index.html" >Home</a>
+        <a href="../about.html" >About</a>
+        <a href="" >Terms & Condition</a>
+    </div>
+    <div class="footr-column">
+        <p>Follow us at </p>
+        <div class="socialicons">
+            <a href=""><img src="/assets/social-media/Facebook_svg-64.webp" alt="Facebook"></a>
+            <a href=""><img src="/assets/social-media/BW_Twitterg-64.webp" alt="Twitter"></a>
+            <a href=""><img src="/assets/social-media/Instagram-64.webp" alt="Intagram"></a>
+        </div>
+    </div>
+</footer>
+<script >
+    let name = localStorage.getItem('name');
+
+    const userNameElement = document.getElementById('user-name');
+    if(userNameElement){
+        userNameElement.textContent = name;
+    }
+</script>
+<script type="module" src="/js/manage-all-post-main.js"></script>
+</body>
+
+</html>
