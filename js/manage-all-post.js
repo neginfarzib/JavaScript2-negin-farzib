@@ -2,7 +2,7 @@ const base_url = "https://v2.api.noroff.dev";
 
 /**
  * API call for deleting blog post from the API-server
- * @param {string} blogPostId - ID of the blogPost which should be deleted
+ * @param {number} blogPostId - ID of the blogPost which should be deleted
  * @return {void}
 * */
 export async function deleteBlogPostServer(blogPostId) {
@@ -34,7 +34,7 @@ export async function deleteBlogPostServer(blogPostId) {
 
 /**
 * Getting confirmation from the user then calling delete API call
- * @param {string} blogPostId - ID of the blog post which should be deleted
+ * @param {number} blogPostId - ID of the blog post which should be deleted
 * */
 export async function deleteBlogPost(blogPostId){
     if(confirm('Are you sure you want to delete?')){
@@ -53,7 +53,7 @@ export async function allPosts() {
                 "X-Noroff-API-Key": '4f20fb44-3b03-4fc3-bc21-5a7fb98d9816'
             }
         }
-        const url = `${base_url}/social/posts`;
+        const url = `${base_url}/social/posts?_author=true`;
         const response = await fetch(url, options);
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);

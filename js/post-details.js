@@ -3,13 +3,13 @@ const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
 /**
  *  Fetching a blog post by ID
- *  @param {string} blogPostId - ID of the blog post want to fetch from API-server
+ *  @param {number} blogPostId - ID of the blog post want to fetch from API-server
  *  @return {Promise<object>} post - a post object
 * */
 export async function getBlogPost(blogPostId) {
     try {
         const nameUser =localStorage.getItem('name');
-        const url = base_url+'/blog/posts/' +nameUser+'/'+blogPostId;
+        const url = `${base_url}/blog/posts/${nameUser}/${blogPostId}`;
 
         const response = await fetch(url);
         if (!response.ok) {

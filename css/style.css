@@ -235,7 +235,7 @@ footer a {
    border: 1px solid #ccc;
    border-radius: 8px;
    overflow: hidden;
-   width: 300px;
+   width: 700px;
    margin: 1rem auto;
    padding: 1rem;
    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -252,8 +252,24 @@ footer a {
    object-fit: cover;
 }
 
-.blog-thumbnail h4 {
-   margin: 0 0 0.5rem;
+.blog-thumbnail div {
+   display: flex;
+   flex-direction: row;
+}
+
+.blog-thumbnail div h4 {
+   margin: 0 0 1.5rem;
+}
+
+.blog-thumbnail div img {
+   width: 25px;
+   height: 25px;
+   margin-right: 0.5rem;
+   vertical-align: middle;
+}
+
+.blog-thumbnail h6 {
+   margin: 0 0 1rem;
 }
 
 .blog-thumbnail p {

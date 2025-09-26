@@ -17,12 +17,13 @@ document.addEventListener('DOMContentLoaded',async () => {
     const errorMessageElement = document.getElementById('errorMessage');
 
     const posts = await dateSortedAllPosts();
+    console.log(posts.length)
     displayPosts(posts);
 
     function displayPosts(posts){
         blogPostsThumbnail.innerHTML = '';
 
-        const maxPosts = 12;
+        const maxPosts = posts.length;
         const postToShow = posts.slice(0, maxPosts);
 
         postToShow.forEach(post =>{
@@ -33,7 +34,21 @@ document.addEventListener('DOMContentLoaded',async () => {
             blogThumbnailHref.href = 'post/index.html?blog-post-id='+post.id;
             blogThumbnailHref.target = '_blank';
 
-            const postTitle = document.createElement('h4');
+            const author = document.createElement('div');
+
+            const postAuthorIcon = document.createElement('img');
+            postAuthorIcon.src = 'assets/person-icon.svg';
+            postAuthorIcon.alt = 'author-icon'
+            author.appendChild(postAuthorIcon);
+
+            const postAuthor = document.createElement('h4');
+            postAuthor.textContent = post.author.name;
+            author.appendChild(postAuthor)
+
+            blogThumbnailHref.appendChild(author)
+            blogThumbnail.appendChild(blogThumbnailHref);
+
+            const postTitle = document.createElement('h6');
             postTitle.textContent = post.title;
             blogThumbnailHref.appendChild(postTitle)
             blogThumbnail.appendChild(blogThumbnailHref);

@@ -76,7 +76,7 @@ export async function editBlogPost(title, body, url, alt, tags) {
 
 /**
  * Fetching blog port by ID
- * @param {string} blogPostId - blog post ID
+ * @param {number} blogPostId - blog post ID
  * @return {Promise<object>} post - single post
 * */
 export async function getBlogPost(blogPostId) {
