@@ -41,9 +41,10 @@ nav a {
  }
 
 .logo {
+   width: 1.5rem;
    display: none;
-   height: 50px; 
-   margin-right: 15px; 
+   height: 40px;
+   margin-right: 5px;
  }
 
  header {

@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded',async () => {
 
             const blogThumbnailHref = document.createElement('a');
             blogThumbnailHref.href = 'post/index.html?blog-post-id='+post.id;
-            blogThumbnailHref.target = '_blank';
+            // blogThumbnailHref.target = '_blank';
 
             const author = document.createElement('div');
 
