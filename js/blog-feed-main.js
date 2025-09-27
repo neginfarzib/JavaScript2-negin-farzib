@@ -31,9 +31,8 @@ document.addEventListener('DOMContentLoaded',async () => {
             const blogThumbnail = document.createElement('div');
             blogThumbnail.classList.add('blog-thumbnail');
 
-            const blogThumbnailHref = document.createElement('a');
-            blogThumbnailHref.href = 'post/index.html?blog-post-id='+post.id;
-            // blogThumbnailHref.target = '_blank';
+            const authorHref = document.createElement('a');
+            authorHref.href = '/post/users-posts.html?name-of-user=' + post.author.name;
 
             const author = document.createElement('div');
 
@@ -46,15 +45,18 @@ document.addEventListener('DOMContentLoaded',async () => {
             postAuthor.textContent = post.author.name;
             author.appendChild(postAuthor)
 
-            blogThumbnailHref.appendChild(author)
-            blogThumbnail.appendChild(blogThumbnailHref);
+            authorHref.appendChild(author)
+            blogThumbnail.appendChild(authorHref);
 
             const postCreatedTime = document.createElement('p');
             postCreatedTime.classList.add('blog-thumbnail-created-time-p')
             const date = new Date(post.created)
             postCreatedTime.textContent = date.toLocaleDateString('en-US', options);
-            blogThumbnailHref.appendChild(postCreatedTime)
-            blogThumbnail.appendChild(blogThumbnailHref);
+            blogThumbnail.appendChild(postCreatedTime);
+
+            const blogThumbnailHref = document.createElement('a');
+            blogThumbnailHref.href = 'post/index.html?blog-post-id='+post.id;
+            // blogThumbnailHref.target = '_blank';
 
             const postTitle = document.createElement('h6');
             postTitle.textContent = post.title;

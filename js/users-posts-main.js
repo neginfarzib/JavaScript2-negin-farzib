@@ -1,6 +1,7 @@
 import {allUsersPosts} from "./manage-all-post.js";
 const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric' , minute: 'numeric', hour12: false};
 
+
 document.addEventListener('DOMContentLoaded',async () => {
     const editPostsThumbnail = document.getElementById('user-posts-thumbnail');
 
