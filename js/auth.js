@@ -18,13 +18,17 @@ async function sendAuthRequest(endpoint, data) {
             const result = await response.json();
             const token = result.data.accessToken;
             const nameApi = result.data.name;
+            localStorage.removeItem("accessToken");
+            localStorage.removeItem("name");
             localStorage.setItem("accessToken", token);
             localStorage.setItem("name", nameApi);
 
             if (endpoint.includes("register")) {
                 alert("Registration successful!");
+                window.location.href = "../account/login.html";
+            }else {
+                window.location.href = "../post/manage-all-post.html";
             }
-            window.location.href = "../post/manage-all-post.html";
         } else {
             const error = await response.json();
             let messages = "";
@@ -52,10 +56,39 @@ async function sendAuthRequest(endpoint, data) {
  * @param {string} name - The user's name.
  * @param {string} email - The user's email.
  * @param {string} password - The user's password.
+ * @param {string} bio - The user's bio.
+ * @param {string} avatarUrl - The user's avatarUrl.
+ * @param {string} avatarAltText - The user's avatarAltText.
+ * @param {string} bannerUrl - The user's bannerUrl.
+ * @param {string} bannerAltText - The user's bannerAltText.
  * @returns {void}
  */
-export function registerUser(name, email, password) {
-    return sendAuthRequest("/auth/register", { name, email, password });
+export function registerUser(name, email, password,bio, avatarUrl, avatarAltText, bannerUrl, bannerAltText) {
+    const userData = {
+        name,
+        email,
+        password
+    }
+
+    if (avatarUrl && avatarAltText) {
+        userData.avatar = {
+            url: avatarUrl,
+            alt: avatarAltText
+        };
+    }
+
+    if (bannerUrl && bannerAltText) {
+        userData.banner = {
+            url: bannerUrl,
+            alt: bannerAltText
+        };
+    }
+
+    if (bio) {
+        userData.bio=bio;
+    }
+
+    return sendAuthRequest("/auth/register", userData);
 }
 
 /**
