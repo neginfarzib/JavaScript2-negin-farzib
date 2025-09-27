@@ -258,8 +258,12 @@ footer a {
    flex-direction: row;
 }
 
-.blog-thumbnail div h4 {
-   margin: 0 0 1.5rem;
+.blog-thumbnail h4 {
+   margin: 0 0 0.5rem;
+}
+
+.blog-thumbnail-created-time-p{
+   margin-top: 0px;
 }
 
 .blog-thumbnail div img {
@@ -342,6 +346,15 @@ footer a {
 
 .login-img{
    width: 100%;
+}
+
+.user-all-posts{
+   width: 70%;
+   margin: 50px auto;
+}
+.user-all-posts h3{
+   font-weight: normal;
+   margin-bottom: 0;
 }
 
 .manage-all-posts{

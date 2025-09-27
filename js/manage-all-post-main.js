@@ -1,12 +1,11 @@
-import {checkIfAuthenticated} from "./auth-check.js";
-import {deleteBlogPost, allMyPosts} from "./manage-all-post.js";
+import {deleteBlogPost, allUsersPosts} from "./manage-all-post.js";
 
-checkIfAuthenticated();
 
 document.addEventListener('DOMContentLoaded',async () => {
     const editPostsThumbnail = document.getElementById('edit-posts-thumbnail');
 
-    const posts = await allMyPosts();
+    const nameUser =localStorage.getItem('name');
+    const posts = await allUsersPosts(nameUser);
     displayPosts(posts.data);
 
     function displayPosts(posts){

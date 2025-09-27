@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Blog Post Details | Butterfly Forum</title>
+    <title>Manage My Posts | Butterfly Forum</title>
     <meta name="description"
           content="">
     <meta charset="UTF-8">
@@ -10,7 +10,6 @@
     <link rel="icon" type="image/png" sizes="10x10" href="/assets/butterfly-icon.svg">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script type="module" src="/js/post-details-main.js"></script>
 </head>
 
 <body>
@@ -24,30 +23,22 @@
                 <a href="../index.html">Home</a>
             </div>
             <div>
-                <a id="user-name"  href="../account/login.html">Sign in</a>
-                <a id="register-nav"  href="../account/register.html">Register</a>
+                <a href="../account/profile.html" id="user-name"></a>
+                <a href="../account/login.html">Logout</a>
             </div>
         </div>
     </nav>
 </header>
 <main>
-    <section >
-        <div class="public-post">
-            <h2 id="blog-post-details-title"></h2>
-            <img id="blog-post-details-img" src="" alt="">
-            <div class="public-post-text-container">
-                <pre id="blog-post-details-body"></pre>
-                <div class="public-post-text-author">
-                    <div>
-                        <label>By:</label>
-                        <a id="blog-post-details-author-href" href="">
-                                <p id="blog-post-details-author"></p>
-                        </a>
-                    </div>
-                    <div>
-                        <label>Published on:</label>
-                        <p id="blog-post-details-publish-date"></p>
-                    </div>
+    <section>
+        <div class="user-all-posts">
+            <h3 id="user-all-post-title">All Posts</h3>
+            <div class="edit-line-separator"></div>
+            <div class="row">
+            </div>
+            <div id="user-posts-thumbnail">
+                <div class="row">
+                    <p id="errorMessage" ></p>
                 </div>
             </div>
         </div>
@@ -70,15 +61,12 @@
 <script >
     let name = localStorage.getItem('name');
 
-    const registerNavElement = document.getElementById('register-nav');
-
     const userNameElement = document.getElementById('user-name');
-    if(userNameElement && localStorage.getItem('accessToken')){
+    if(userNameElement){
         userNameElement.textContent = name;
-        registerNavElement.textContent = 'Logout'
-        registerNavElement.href = '../account/login.html'
     }
 </script>
+<script type="module" src="/js/users-posts-main.js"></script>
 </body>
 
 </html>

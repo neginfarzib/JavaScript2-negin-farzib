@@ -70,10 +70,11 @@ export async function allPosts() {
 }
 
 /**
- * Fetching all blog posts belonging to me from API-sever
+ * Fetching all blog posts belonging to the given user from API-sever
+ * @param {string} nameOfUser - name of user
  * @return {Promise<object[]>} array of post fetched from API-server
 * */
-export async function allMyPosts() {
+export async function allUsersPosts(nameOfUser) {
     try {
         const options = {
             headers: {
@@ -81,8 +82,8 @@ export async function allMyPosts() {
                 "X-Noroff-API-Key": '4f20fb44-3b03-4fc3-bc21-5a7fb98d9816'
             }
         }
-        const nameUser =localStorage.getItem('name');
-        const url = `${base_url}/social/profiles/${name}/posts`;
+
+        const url = `${base_url}/social/profiles/${nameOfUser}/posts`;
         const response = await fetch(url, options);
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);

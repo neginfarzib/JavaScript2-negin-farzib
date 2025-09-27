@@ -11,12 +11,17 @@ document.addEventListener('DOMContentLoaded',async () => {
     blogPostDetailsTitle.innerHTML = '';
     blogPostDetailsTitle.textContent = blogPost.title;
 
-    const blogPostDetailsImg = document.getElementById('blog-post-details-img');
-    blogPostDetailsImg.src = blogPost.media.url || '';
-    blogPostDetailsImg.alt = blogPost.media?.alt || '';
+    if (blogPost.media) {
+        const blogPostDetailsImg = document.getElementById('blog-post-details-img');
+        blogPostDetailsImg.src = blogPost.media.url || '';
+        blogPostDetailsImg.alt = blogPost.media?.alt || '';
+    }
 
     const blogPostDetailsBody = document.getElementById('blog-post-details-body');
     blogPostDetailsBody.textContent = blogPost.body;
+
+    const blogPostDetailsAuthorHref = document.getElementById('blog-post-details-author-href');
+    blogPostDetailsAuthorHref.href = './users-posts.html?name-of-user=' + blogPost.author.name;
 
     const blogPostDetailsAuthor = document.getElementById('blog-post-details-author');
     blogPostDetailsAuthor.textContent = blogPost.author.name;

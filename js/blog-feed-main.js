@@ -1,5 +1,6 @@
 import {allPosts} from "./manage-all-post.js";
 const base_url = "https://v2.api.noroff.dev";
+const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric' , minute: 'numeric', hour12: false};
 
 /**
  * Fetching all posts. Then sort them by date
@@ -46,6 +47,13 @@ document.addEventListener('DOMContentLoaded',async () => {
             author.appendChild(postAuthor)
 
             blogThumbnailHref.appendChild(author)
+            blogThumbnail.appendChild(blogThumbnailHref);
+
+            const postCreatedTime = document.createElement('p');
+            postCreatedTime.classList.add('blog-thumbnail-created-time-p')
+            const date = new Date(post.created)
+            postCreatedTime.textContent = date.toLocaleDateString('en-US', options);
+            blogThumbnailHref.appendChild(postCreatedTime)
             blogThumbnail.appendChild(blogThumbnailHref);
 
             const postTitle = document.createElement('h6');
