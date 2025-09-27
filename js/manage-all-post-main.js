@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded',async () => {
             postBannerHrefEdit.href = '../post/edit.html?blog-post-id='+post.id;
             const postImageBannerEdit = document.createElement('img');
             postImageBannerEdit.classList.add('creat-post-thumbnail-banner-img')
-            postImageBannerEdit.src = '/assets/pen.svg';
+            postImageBannerEdit.src = '../assets/pen.svg';
             postImageBannerEdit.alt = 'edit';
             postBannerHrefEdit.appendChild(postImageBannerEdit);
             createPostThumbnailBannerDiv.appendChild(postBannerHrefEdit);
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded',async () => {
             // postBannerHrefView.target = '_blank';
             const postImageBannerView = document.createElement('img');
             postImageBannerView.classList.add('creat-post-thumbnail-banner-img')
-            postImageBannerView.src = '/assets/eye.svg';
+            postImageBannerView.src = '../assets/eye.svg';
             postImageBannerView.alt = 'view';
             postBannerHrefView.appendChild(postImageBannerView);
             createPostThumbnailBannerDiv.appendChild(postBannerHrefView);
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded',async () => {
             };
             const postImageBannerDelete = document.createElement('img');
             postImageBannerDelete.classList.add('creat-post-thumbnail-banner-img')
-            postImageBannerDelete.src = '/assets/bin.svg';
+            postImageBannerDelete.src = '../assets/bin.svg';
             postImageBannerDelete.alt = 'delete';
             postBannerHrefDelete.appendChild(postImageBannerDelete);
             createPostThumbnailBannerDiv.appendChild(postBannerHrefDelete);

@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded',async () => {
     if (userAllPostsFollow) {
         document.getElementById('user-all-posts-follow-btn').addEventListener('click', function (e) {
             e.preventDefault();
-            localStorage.setItem("callbackLocation", `/post/user-posts.html?name-of-user=${nameOfUser}`);
+            localStorage.setItem("callbackLocation", `../post/user-posts.html?name-of-user=${nameOfUser}`);
 
             const token = localStorage.getItem('accessToken');
 
