@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded',async () => {
             blogThumbnail.classList.add('blog-thumbnail');
 
             const authorHref = document.createElement('a');
-            authorHref.href = '/post/users-posts.html?name-of-user=' + post.author.name;
+            authorHref.href = '/post/user-posts.html?name-of-user=' + post.author.name;
 
             const author = document.createElement('div');
 

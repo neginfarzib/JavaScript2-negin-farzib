@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Manage My Posts | Butterfly Forum</title>
+    <title>User Posts | Butterfly Forum</title>
     <meta name="description"
           content="">
     <meta charset="UTF-8">
@@ -21,6 +21,7 @@
             <div id="nav-div-2">
                 <img class="logo" src="/assets/butterfly-icon.svg " alt="ButterflyForum-logo">
                 <a href="../index.html">Home</a>
+                <a href="../post/manage-all-post.html">All My Posts</a>
             </div>
             <div>
                 <a href="../account/profile.html" id="user-name">Sign in</a>
@@ -34,12 +35,13 @@
         <div class="user-all-posts">
             <h3 id="user-all-post-title">All Posts</h3>
             <div class="edit-line-separator"></div>
+            <div class="row-left">
+                <button id="user-all-posts-follow-btn" type="button" value="fallow-unfollow">Follow</button>
+            </div>
             <div class="row">
+                <p id="errorMessage" ></p>
             </div>
             <div id="user-posts-thumbnail">
-                <div class="row">
-                    <p id="errorMessage" ></p>
-                </div>
             </div>
         </div>
     </section>
@@ -68,7 +70,7 @@
         }
     }
 </script>
-<script type="module" src="/js/users-posts-main.js"></script>
+<script type="module" src="/js/user-posts-main.js"></script>
 </body>
 
 </html>

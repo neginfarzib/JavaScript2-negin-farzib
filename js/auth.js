@@ -23,7 +23,13 @@ async function sendAuthRequest(endpoint, data) {
             localStorage.setItem("accessToken", token);
             localStorage.setItem("name", nameApi);
 
-            if (endpoint.includes("register")) {
+
+            const callbackLocation = localStorage.getItem("callbackLocation");
+
+            if (callbackLocation !== null) {
+                localStorage.removeItem("callbackLocation");
+                window.location.href = callbackLocation;
+            }else if(endpoint.includes("register")){
                 alert("Registration successful!");
                 window.location.href = "../account/login.html";
             }else {

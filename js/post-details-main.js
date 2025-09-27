@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded',async () => {
     blogPostDetailsBody.textContent = blogPost.body;
 
     const blogPostDetailsAuthorHref = document.getElementById('blog-post-details-author-href');
-    blogPostDetailsAuthorHref.href = './users-posts.html?name-of-user=' + blogPost.author.name;
+    blogPostDetailsAuthorHref.href = './user-posts.html?name-of-user=' + blogPost.author.name;
 
     const blogPostDetailsAuthor = document.getElementById('blog-post-details-author');
     blogPostDetailsAuthor.textContent = blogPost.author.name;
