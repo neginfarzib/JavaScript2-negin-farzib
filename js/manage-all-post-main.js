@@ -1,5 +1,7 @@
 import {deleteBlogPost, allUsersPosts} from "./manage-all-post.js";
+import {checkIfAuthenticated} from "./auth-check.js";
 
+checkIfAuthenticated();
 
 document.addEventListener('DOMContentLoaded',async () => {
     const editPostsThumbnail = document.getElementById('edit-posts-thumbnail');
