@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Register User | Butterfly Forum</title>
+    <title>User Profile | Butterfly Forum</title>
     <meta name="description"
           content="">
     <meta charset="UTF-8">
@@ -23,7 +23,7 @@
                 <a href="../index.html">Home</a>
             </div>
             <div>
-                <a href="../account/login.html">Sign in</a>
+                <a href="../account/profile.html" id="user-name"></a>
                 <a href="../account/register.html">Register</a>
             </div>
         </div>
@@ -31,35 +31,29 @@
 </header>
 <main>
     <div class="login-box">
-        <form id="register-form">
-            <div>Name*</div>
-            <input type="text" id="name"  pattern="^[a-zA-Z0-9_]+$"
-                   title="Only letters, numbers, and underscores are allowed" required>
-            <div>Email*</div>
-            <input type="email" id="email"  pattern="^[a-zA-Z0-9._%+\-]+@stud\.noroff\.no$"
-                   title="The email value must be a valid stud.noroff.no email address" required>
-            <div>Password*</div>
-            <input type="password" id="password" minlength="8"
-                   title="Password must be at least 8 characters long." required>
+        <form id="profile-form">
+            <div>Name</div>
+            <input type="text" id="profile-name"  pattern="^[a-zA-Z0-9_]+$"
+                   title="Only letters, numbers, and underscores are allowed" readonly>
+            <div>Email</div>
+            <input type="email" id="profile-email"  pattern="^[a-zA-Z0-9._%+\-]+@stud\.noroff\.no$"
+                   title="The email value must be a valid stud.noroff.no email address" readonly>
             <div>Bio</div>
-            <input type="text" id="bio">
+            <input type="text" id="profile-bio" >
 
             <div>Avatar URL</div>
-            <input type="text" id="avatarUrl" >
+            <input type="text" id="profile-avatarUrl" >
             <div>Avatar Alt Text</div>
-            <input type="text" id="avatarAltText" >
+            <input type="text" id="profile-avatarAltText"  >
 
             <div>Banner URL</div>
-            <input type="text" id="bannerUrl" >
+            <input type="text" id="profile-bannerUrl" >
             <div>Banner Alt Text</div>
-            <input type="text" id="bannerAltText" >
+            <input type="text" id="profile-bannerAltText" >
 
-            <button type="submit">Register</button>
+            <button type="submit">Save Changes</button>
             <div class="row">
                 <p id="errorMessage" ></p>
-            </div>
-            <div class="div-login-register">
-                <a href="login.html">Already have an account? Sign In !</a>
             </div>
         </form>
     </div>
@@ -78,7 +72,15 @@
         </div>
     </div>
 </footer>
-<script type="module" src="/js/register-main.js"></script>
+<script >
+    let name = localStorage.getItem('name');
+
+    const userNameElement = document.getElementById('user-name');
+    if(userNameElement){
+        userNameElement.textContent = name;
+    }
+</script>
+<script type="module" src="/js/profile-main.js"></script>
 </body>
 
 </html>
