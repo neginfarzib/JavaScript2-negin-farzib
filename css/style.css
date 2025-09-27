@@ -249,6 +249,69 @@ footer a {
    padding: 1rem;
    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
+
+.search-blog-thumbnail-input-btn {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   width: 700px;
+   margin: 1rem auto;
+   font-family: Arial, sans-serif;
+   gap: 0.5rem;
+}
+
+.search-blog-thumbnail-input-btn input {
+   flex: 7; /* 70% */
+   padding: 0.5rem;
+   font-size: 1rem;
+}
+
+.search-blog-thumbnail-input-btn button {
+   flex: 3; /* 30% */
+   padding: 0.5rem;
+   font-size: 1rem;
+   cursor: pointer;
+   border: none;
+   border-radius: 4px;
+}
+
+
+.search-blog-thumbnail {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   width: 700px;
+   margin: 1rem auto;
+   padding: 1rem;
+   font-family: Arial, sans-serif;
+}
+
+.search-blog-thumbnail label {
+   font-weight: bold;
+   color: #333;
+}
+
+.search-blog-thumbnail input {
+   padding: 0.6rem 1rem;
+   border: 1px solid #ccc;
+   border-radius: 8px;
+   font-size: 1rem;
+   transition: all 0.2s ease-in-out;
+}
+
+.search-blog-thumbnail input:focus {
+   border-color: #0077ff;
+   box-shadow: 0 0 4px rgba(0, 119, 255, 0.4);
+   outline: none;
+}
+
+.edit-line-separator {
+   margin-top: 0.5rem;
+   height: 1px;
+   background-color: #ddd;
+}
+
+
 .blog-thumbnail a {
    display: block;               /* make anchor behave like a div */
    text-decoration: none;        /* remove underline */

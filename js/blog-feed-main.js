@@ -1,4 +1,4 @@
-import {allPosts} from "./manage-all-post.js";
+import {allPosts, searchPostAPI} from "./manage-all-post.js";
 const base_url = "https://v2.api.noroff.dev";
 const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric' , minute: 'numeric', hour12: false};
 
@@ -24,6 +24,36 @@ document.addEventListener('DOMContentLoaded',async () => {
     function displayPosts(posts){
         blogPostsThumbnail.innerHTML = '';
 
+        const inputSearchPostsDiv = document.createElement('div');
+        inputSearchPostsDiv.classList.add('search-blog-thumbnail');
+
+        const inputBtnSearchPostsDiv = document.createElement('div');
+        inputBtnSearchPostsDiv.classList.add('search-blog-thumbnail-input-btn');
+        const inputSearchPosts = document.createElement('input');
+        inputSearchPosts.type = 'text';
+        inputSearchPosts.id = 'searchPosts';
+        inputSearchPosts.placeholder = 'Search all posts ...'
+        inputBtnSearchPostsDiv.appendChild(inputSearchPosts);
+        const searchPostsBtn = document.createElement('button');
+        searchPostsBtn.classList.add('search-blog-thumbnail-btn')
+        searchPostsBtn.textContent = 'Search';
+        searchPostsBtn.addEventListener('click', async function (e) {
+            e.preventDefault();
+            const searchInput = document.getElementById('searchPosts').value.trim()
+            const searchPostsList = await searchPostAPI(searchInput);
+            displayPosts(searchPostsList);
+        })
+        inputBtnSearchPostsDiv.appendChild(searchPostsBtn);
+        inputSearchPostsDiv.appendChild(inputBtnSearchPostsDiv);
+
+        const editLineSeperator = document.createElement('div');
+        editLineSeperator.classList.add("edit-line-separator");
+        inputSearchPostsDiv.appendChild(editLineSeperator);
+
+        blogPostsThumbnail.appendChild(inputSearchPostsDiv);
+
+
+        
         const maxPosts = posts.length;
         const postToShow = posts.slice(0, maxPosts);
 
@@ -31,22 +61,24 @@ document.addEventListener('DOMContentLoaded',async () => {
             const blogThumbnail = document.createElement('div');
             blogThumbnail.classList.add('blog-thumbnail');
 
-            const authorHref = document.createElement('a');
-            authorHref.href = '/post/user-posts.html?name-of-user=' + post.author.name;
+            if(post.author){
+                const authorHref = document.createElement('a');
+                authorHref.href = '/post/user-posts.html?name-of-user=' + post.author.name;
 
-            const author = document.createElement('div');
+                const author = document.createElement('div');
 
-            const postAuthorIcon = document.createElement('img');
-            postAuthorIcon.src = 'assets/person-icon.svg';
-            postAuthorIcon.alt = 'author-icon'
-            author.appendChild(postAuthorIcon);
+                const postAuthorIcon = document.createElement('img');
+                postAuthorIcon.src = 'assets/person-icon.svg';
+                postAuthorIcon.alt = 'author-icon'
+                author.appendChild(postAuthorIcon);
 
-            const postAuthor = document.createElement('h4');
-            postAuthor.textContent = post.author.name;
-            author.appendChild(postAuthor)
+                const postAuthor = document.createElement('h4');
+                postAuthor.textContent = post.author.name;
+                author.appendChild(postAuthor)
 
-            authorHref.appendChild(author)
-            blogThumbnail.appendChild(authorHref);
+                authorHref.appendChild(author)
+                blogThumbnail.appendChild(authorHref);
+            }
 
             const postCreatedTime = document.createElement('p');
             postCreatedTime.classList.add('blog-thumbnail-created-time-p')
@@ -63,12 +95,14 @@ document.addEventListener('DOMContentLoaded',async () => {
             blogThumbnailHref.appendChild(postTitle)
             blogThumbnail.appendChild(blogThumbnailHref);
 
-            const postImage = document.createElement('img');
-            postImage.classList.add('blog-thumbnail-img')
-            postImage.src = post.media?.url || '';
-            postImage.alt = post.media?.alt || '';
-            blogThumbnailHref.appendChild(postImage)
-            blogThumbnail.appendChild(blogThumbnailHref);
+            if(post.media){
+                const postImage = document.createElement('img');
+                postImage.classList.add('blog-thumbnail-img')
+                postImage.src = post.media?.url || '';
+                postImage.alt = post.media?.alt || '';
+                blogThumbnailHref.appendChild(postImage)
+                blogThumbnail.appendChild(blogThumbnailHref);
+            }
 
             const postContent = document.createElement('p');
             postContent.textContent = post.body?.split(/\s+/).slice(0, 50).join(' ') || '';

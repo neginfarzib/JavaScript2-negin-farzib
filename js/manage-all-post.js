@@ -70,6 +70,35 @@ export async function allPosts() {
 }
 
 /**
+ * Searching in posts for the input term
+ * @param {string} searchInput - input term to search
+ * @return {Promise<object[]>} array of post fetched from API-server
+* */
+export async function searchPostAPI(searchInput) {
+    try {
+        const options = {
+            headers: {
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTmVnaW4iLCJlbWFpbCI6Im5lZ2ZhcjQ5NzkxQHN0dWQubm9yb2ZmLm5vIiwiaWF0IjoxNzU4ODgyOTk2fQ.G8SDRfET-9DE5XjOSWjDm2wZCRGwErGQnNPaiXgpWjs',
+                "X-Noroff-API-Key": '4f20fb44-3b03-4fc3-bc21-5a7fb98d9816'
+            }
+        }
+        const url = `${base_url}/social/posts/search?q=${searchInput}`;
+        const response = await fetch(url, options);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data.data;
+    } catch (error) {
+        const errorMessageElement = document.getElementById('errorMessage');
+        errorMessageElement.style.display = 'block';
+        errorMessageElement.innerHTML = error;
+
+        console.error("Error fetching data:", error);
+    }
+}
+
+/**
  * Fetching all blog posts belonging to the given user from API-sever
  * @param {string} nameOfUser - name of user
  * @return {Promise<object[]>} array of post fetched from API-server
