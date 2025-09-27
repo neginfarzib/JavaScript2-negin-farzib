@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded',async () => {
 
             if(post.author){
                 const authorHref = document.createElement('a');
-                authorHref.href = '/post/user-posts.html?name-of-user=' + post.author.name;
+                authorHref.href = 'post/user-posts.html?name-of-user=' + post.author.name;
 
                 const author = document.createElement('div');
 
