@@ -46,3 +46,4 @@ Just either can run it with VS Code live server
   - In this page can 
     - View all user's posts
     - Follow / Unfollow
+    - 
