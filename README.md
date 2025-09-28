@@ -1,8 +1,8 @@
-# JavaScript-2-neginfarzib
+# JavaScript2-negin-farzib
 ## Technical feature
 - plain javascript. No Javascript framework
 - ES6
-- HTML 5 
+- HTML  
 - plain CSS. No CSS lib or framework 
 ## Run the project
 No need for any special way to run since it is plain JavaScript + HTML + CSS.
