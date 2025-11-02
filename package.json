@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.3.8"
+  },
+  "devDependencies": {
+    "sass": "^1.93.2"
+  },
+  "scripts": {
+    "build": "sass styles/scss:styles/css --style=compressed",
+    "watch": "sass styles/scss:styles/css --watch"
+  },
+  "name": "javascript2-negin-farzib",
+  "version": "1.0.0",
+  "description": "- plain javascript. No Javascript framework\r - ES6\r - HTML  \r - plain CSS. No CSS lib or framework \r ## Run the project\r No need for any special way to run since it is plain JavaScript + HTML + CSS.\r Just either can run it with VS Code live server\r - Live Server , By Ritwick Dey\r - Simply open pages by a browser\r ## Usage instruction \r - Home\r   - Here you can see all users posts. No need for authentication\r   - Each post has two hyperlinks\r     - **Author** of each post is provided at the top of each post. Also is it clickable and will open \r     a page with the author all posts which can be **follow/unfollow**\r       - To be able to follow/ubfollow need the user to be authenticated\r       - If not authenticated will redirect to login page for authentication then back to this page\r     - The whole post is clickable and will open the post in page with details\r     - \r - All My posts\r   - List of all of my posts\r   - Possibility to \r     - Edit\r     - View\r     - Delete\r   - The user need to be authenticated\r - Sign in\r   - For those pages need authentication, it will change to the username\r     - By clicking on the username, it will redirect to profile page for the authenticated user\r       - In the profile page user can update limited information\r         - name ❌\r         - email ❌\r         - password ❌\r         - bio ✅ \r         - avatar url ✅ \r         - avatar alt ✅\r         - banner url ✅\r         - banner alt ✅\r - Register\r - User's page, \r   - navigate there by\r     - clicking on author name on posts on Home \r     - clicking on a post then from there, author name\r   - In this page can \r     - View all user's posts\r     - Follow / Unfollow",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neginfarzib/JavaScript2-negin-farzib.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/neginfarzib/JavaScript2-negin-farzib/issues"
+  },
+  "homepage": "https://github.com/neginfarzib/JavaScript2-negin-farzib#readme"
+}
