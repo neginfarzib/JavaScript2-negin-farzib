@@ -11859,5 +11859,38 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.btn-primary {
+  background-color: #cc7eb5;
+  border-color: #cc7eb5;
+}
+.btn-primary:hover {
+  background-color: rgb(189.55, 89.45, 160.0333333333);
+  border-color: rgb(189.55, 89.45, 160.0333333333);
+}
+.btn-primary {
+  color: #fff;
+}
+
+.logo {
+  width: 1.5rem;
+  display: none;
+  height: 40px;
+  margin-right: 5px;
+}
+
+.my-navbar-container {
+  background-color: #cc7eb5;
+}
+
+.bg-primary {
+  background-color: #cc7eb5 !important;
+}
+
+.login-box {
+  max-width: 600px;
+  width: 100%;
+  border: 3px solid #cc7eb5;
+  min-height: 450px;
+}
 
 /*# sourceMappingURL=style.css.map */

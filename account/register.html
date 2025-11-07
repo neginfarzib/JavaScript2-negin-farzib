@@ -3,75 +3,73 @@
 
 <head>
     <title>Register User | Butterfly Forum</title>
-    <meta name="description"
-          content="">
+    <meta name="description" content="">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" sizes="10x10" href="../assets/butterfly-icon.svg">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../styles/css/style.css">
 </head>
 
 <body>
-<header>
-    <input type="checkbox" id="menu-checkbox">
-    <label for="menu-checkbox" class="hamburger-icon"><i class="fa fa-bars"></i></label>
-    <nav>
-        <div id="nav-div-1">
-            <div id="nav-div-2">
-                <img class="logo" src="../assets/butterfly-icon.svg " alt="ButterflyForum-logo">
-                <a href="../index.html">Home</a>
-                <a href="../post/manage-all-post.html">All My Posts</a>
+    <header>
+        <input type="checkbox" id="menu-checkbox">
+        <label for="menu-checkbox" class="hamburger-icon"><i class="fa fa-bars"></i></label>
+        <nav>
+            <div id="nav-div-1">
+                <div id="nav-div-2">
+                    <img class="logo" src="../assets/butterfly-icon.svg " alt="ButterflyForum-logo">
+                    <a href="../index.html">Home</a>
+                    <a href="../post/manage-all-post.html">All My Posts</a>
+                </div>
+                <div>
+                    <a href="../account/login.html">Sign in</a>
+                    <a href="../account/register.html">Register</a>
+                </div>
             </div>
-            <div>
-                <a href="../account/login.html">Sign in</a>
-                <a href="../account/register.html">Register</a>
-            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="login-box">
+            <form id="register-form">
+                <div>Name*</div>
+                <input type="text" id="name" pattern="^[a-zA-Z0-9_]+$"
+                    title="Only letters, numbers, and underscores are allowed" required>
+                <div>Email*</div>
+                <input type="email" id="email" pattern="^[a-zA-Z0-9._%+\-]+@stud\.noroff\.no$"
+                    title="The email value must be a valid stud.noroff.no email address" required>
+                <div>Password*</div>
+                <input type="password" id="password" minlength="8" title="Password must be at least 8 characters long."
+                    required>
+                <div>Bio</div>
+                <input type="text" id="bio">
+
+                <div>Avatar URL</div>
+                <input type="text" id="avatarUrl">
+                <div>Avatar Alt Text</div>
+                <input type="text" id="avatarAltText">
+
+                <div>Banner URL</div>
+                <input type="text" id="bannerUrl">
+                <div>Banner Alt Text</div>
+                <input type="text" id="bannerAltText">
+
+                <button type="submit">Register</button>
+                <div class="row">
+                    <p id="errorMessage"></p>
+                </div>
+                <div class="div-login-register">
+                    <a href="login.html">Already have an account? Sign In !</a>
+                </div>
+            </form>
         </div>
-    </nav>
-</header>
-<main>
-    <div class="login-box">
-        <form id="register-form">
-            <div>Name*</div>
-            <input type="text" id="name"  pattern="^[a-zA-Z0-9_]+$"
-                   title="Only letters, numbers, and underscores are allowed" required>
-            <div>Email*</div>
-            <input type="email" id="email"  pattern="^[a-zA-Z0-9._%+\-]+@stud\.noroff\.no$"
-                   title="The email value must be a valid stud.noroff.no email address" required>
-            <div>Password*</div>
-            <input type="password" id="password" minlength="8"
-                   title="Password must be at least 8 characters long." required>
-            <div>Bio</div>
-            <input type="text" id="bio">
-
-            <div>Avatar URL</div>
-            <input type="text" id="avatarUrl" >
-            <div>Avatar Alt Text</div>
-            <input type="text" id="avatarAltText" >
-
-            <div>Banner URL</div>
-            <input type="text" id="bannerUrl" >
-            <div>Banner Alt Text</div>
-            <input type="text" id="bannerAltText" >
-
-            <button type="submit">Register</button>
-            <div class="row">
-                <p id="errorMessage" ></p>
-            </div>
-            <div class="div-login-register">
-                <a href="login.html">Already have an account? Sign In !</a>
-            </div>
-        </form>
-    </div>
-</main>
-<footer class="row-footer">
-    <div class="footr-column">
-        <a href="../index.html" >Home</a>
-        <a href="" >Terms & Condition</a>
-    </div>
-</footer>
-<script type="module" src="../js/register-main.js"></script>
+    </main>
+    <footer class="row-footer">
+        <div class="footr-column">
+            <a href="../index.html">Home</a>
+            <a href="">Terms & Condition</a>
+        </div>
+    </footer>
+    <script type="module" src="../js/register-main.js"></script>
 </body>
 
 </html>
