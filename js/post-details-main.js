@@ -1,34 +1,46 @@
-import {getBlogPost} from "./post-details.js";
+import { getBlogPost } from './post-details.js';
 const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
-document.addEventListener('DOMContentLoaded',async () => {
-    const params = new URLSearchParams(window.location.search);
-    const postId = params.get("blog-post-id");
+document.addEventListener('DOMContentLoaded', async () => {
+  const params = new URLSearchParams(window.location.search);
+  const postId = params.get('blog-post-id');
 
-    const blogPost = await getBlogPost(postId);
+  const blogPost = await getBlogPost(postId);
 
-    const blogPostDetailsTitle = document.getElementById('blog-post-details-title');
-    blogPostDetailsTitle.innerHTML = '';
-    blogPostDetailsTitle.textContent = blogPost.title;
+  const blogPostDetailsTitle = document.getElementById(
+    'blog-post-details-title'
+  );
+  blogPostDetailsTitle.classList.add('card-title', 'mb-3', 'text-center');
+  blogPostDetailsTitle.innerHTML = '';
+  blogPostDetailsTitle.textContent = blogPost.title;
 
-    if (blogPost.media) {
-        const blogPostDetailsImg = document.getElementById('blog-post-details-img');
-        blogPostDetailsImg.src = blogPost.media.url || '';
-        blogPostDetailsImg.alt = blogPost.media?.alt || '';
-    }
+  if (blogPost.media) {
+    const blogPostDetailsImg = document.getElementById('blog-post-details-img');
+    blogPostDetailsImg.src = blogPost.media.url || '';
+    blogPostDetailsImg.alt = blogPost.media?.alt || '';
+    blogPostDetailsImg.classList.add('card-img-top', 'rounded', 'mb-4');
+  }
 
-    const blogPostDetailsBody = document.getElementById('blog-post-details-body');
-    blogPostDetailsBody.textContent = blogPost.body;
+  const blogPostDetailsBody = document.getElementById('blog-post-details-body');
+  blogPostDetailsBody.textContent = blogPost.body;
 
-    const blogPostDetailsAuthorHref = document.getElementById('blog-post-details-author-href');
-    blogPostDetailsAuthorHref.href = './user-posts.html?name-of-user=' + blogPost.author.name;
+  const blogPostDetailsAuthorHref = document.getElementById(
+    'blog-post-details-author-href'
+  );
+  blogPostDetailsAuthorHref.href =
+    './user-posts.html?name-of-user=' + blogPost.author.name;
 
-    const blogPostDetailsAuthor = document.getElementById('blog-post-details-author');
-    blogPostDetailsAuthor.textContent = blogPost.author.name;
+  const blogPostDetailsAuthor = document.getElementById(
+    'blog-post-details-author'
+  );
+  blogPostDetailsAuthor.textContent = blogPost.author.name;
 
-    const blogPostDetailsPublishDate = document.getElementById('blog-post-details-publish-date');
-    const date = new Date(blogPost.created)
-    blogPostDetailsPublishDate.textContent = date.toLocaleDateString('en-US', options);
-
-
-})
+  const blogPostDetailsPublishDate = document.getElementById(
+    'blog-post-details-publish-date'
+  );
+  const date = new Date(blogPost.created);
+  blogPostDetailsPublishDate.textContent = date.toLocaleDateString(
+    'en-US',
+    options
+  );
+});
