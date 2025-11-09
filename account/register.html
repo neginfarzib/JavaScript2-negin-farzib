@@ -75,7 +75,9 @@
                     <label for="bannerAltText" class="form-label">Banner Alt Text</label>
                     <input class="form-control" type="text" id="bannerAltText">
                 </div>
-                <button type="submit" class="btn btn-primary w-100 mt-5">Register</button>
+                <button type="submit" class="btn btn-primary w-100 mt-5">
+                    Register
+                </button>
                 <div class="row">
                     <p id="errorMessage"></p>
                 </div>
@@ -83,7 +85,12 @@
                     <a href="login.html">Already have an account? Sign In !</a>
                 </div>
             </form>
+            <div class="d-flex justify-content-center my-4">
+                <span class="spinner-border d-none" id="loading-spinner" role="status" aria-hidden="false"></span>
+            </div>
+
         </div>
+
     </main>
     <footer class="bg-primary text-white py-4 mt-auto w-100">
         <a class="mb-0 text-dark mx-3" href="../index.html">Home</a>

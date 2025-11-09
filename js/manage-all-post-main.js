@@ -154,6 +154,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       postBannerHrefDelete.href = '#rr';
       postBannerHrefDelete.onclick = function (event) {
         event.preventDefault();
+
         deleteBlogPost(post.id);
       };
       const postImageBannerDelete = document.createElement('img');

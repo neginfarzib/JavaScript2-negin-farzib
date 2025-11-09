@@ -25,6 +25,12 @@ export async function deleteBlogPostServer(blogPostId) {
     }
   } catch (error) {
     const errorMessageElement = document.getElementById('errorMessage');
+    errorMessageElement.classList.add(
+      'alert',
+      'alert-danger',
+      'mt-4',
+      'text-center'
+    );
     errorMessageElement.style.display = 'block';
     errorMessageElement.innerHTML = error;
 
@@ -63,6 +69,12 @@ export async function allPosts() {
     return data;
   } catch (error) {
     const errorMessageElement = document.getElementById('errorMessage');
+    errorMessageElement.classList.add(
+      'alert',
+      'alert-danger',
+      'mt-4',
+      'text-center'
+    );
     errorMessageElement.style.display = 'block';
     errorMessageElement.innerHTML = error;
 
@@ -93,6 +105,12 @@ export async function searchPostAPI(searchInput) {
     return data.data;
   } catch (error) {
     const errorMessageElement = document.getElementById('errorMessage');
+    errorMessageElement.classList.add(
+      'alert',
+      'alert-danger',
+      'mt-4',
+      'text-center'
+    );
     errorMessageElement.style.display = 'block';
     errorMessageElement.innerHTML = error;
 
@@ -124,6 +142,12 @@ export async function allUsersPosts(nameOfUser) {
     return data;
   } catch (error) {
     const errorMessageElement = document.getElementById('errorMessage');
+    errorMessageElement.classList.add(
+      'alert',
+      'alert-danger',
+      'mt-4',
+      'text-center'
+    );
     errorMessageElement.style.display = 'block';
     errorMessageElement.innerHTML = error;
 
