@@ -2,3 +2,4 @@
 node_modules/
 .vscode/*
 styles/css/*
+styles/css/style.css.map
