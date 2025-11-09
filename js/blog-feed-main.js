@@ -32,6 +32,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   function displayPosts(posts) {
     blogPostsThumbnail.innerHTML = '';
+    blogPostsThumbnail.classList.add(
+      'min-vh-100',
+      'd-flex',
+      'flex-column',
+      'align-items-center'
+    );
 
     const inputSearchPostsDiv = document.createElement('div');
     inputSearchPostsDiv.classList.add('w-75', 'mx-auto', 'mb-4', 'my-4');
@@ -143,7 +149,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const errorMessageDiv = document.createElement('div');
     errorMessageDiv.classList.add('row');
     const errorMessageP = document.createElement('p');
-    errorMessageP.classList.add('alert', 'alert-danger', 'mt-4', 'd-none');
     errorMessageP.id = 'errorMessage';
     errorMessageDiv.appendChild(errorMessageP);
     blogPostsThumbnail.appendChild(errorMessageDiv);
