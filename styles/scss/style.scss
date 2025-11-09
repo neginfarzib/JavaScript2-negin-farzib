@@ -29,12 +29,40 @@
 .login-box {
   max-width: 600px;
   width: 100%;
-  border: 3px solid #cc7eb5;
+  border: 3px solid $primary-color;
   min-height: 450px;
 }
 .register-box {
   max-width: 900px;
   width: 100%;
-  border: 3px solid #cc7eb5;
+  border: 3px solid $primary-color;
   min-height: 600px;
+}
+
+.create-post-btn {
+  margin: 50px;
+  background-color: #f3f2f2;
+  border: none;
+  padding: 14px 24px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  min-width: 200px;
+}
+
+#user-all-posts-follow-btn {
+  margin: 10px;
+  background-color: #f3f2f2;
+  border: none;
+  padding: 14px 24px;
+  font-size: 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  align-items: center;
+  gap: 20px;
+  min-width: 200px;
 }
