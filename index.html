@@ -2,33 +2,44 @@
 <html lang="en">
 
 <head>
-    <title>Feed Page| Butterfly Forum</title>
+    <title>Login | Butterfly Forum</title>
     <meta name="description" content="">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" sizes="5x5" href="assets/butterfly-icon.svg">
-    <link rel="stylesheet" href="styles/css/style.css">
+    <link rel="icon" type="image/png" sizes="10x10" href="../assets/butterfly-icon.svg">
+    <link rel="stylesheet" href="../styles/css/style.css">
 </head>
 
-<body>
+<body class="min-vh-100 d-flex flex-column">
     <header>
-        <input type="checkbox" id="menu-checkbox">
-        <label for="menu-checkbox" class="hamburger-icon"><i class="fa fa-bars"></i></label>
-        <nav>
-            <div id="nav-div-1">
-                <div id="nav-div-2">
-                    <img class="logo" src="assets/butterfly-icon.svg " alt="ButterflyForum-logo">
-                    <a href="index.html">Home</a>
-                    <a href="post/manage-all-post.html">All My Posts</a>
-                </div>
-                <div>
-                    <a href="account/login.html">Sign in</a>
-                    <a href="account/register.html">Register</a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid my-navbar-container">
+                <a class="navbar-brand" href="../index.html">
+                    <img src="../assets/butterfly-icon.svg" alt="Logo" width="30" height="30" class="me-2">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">All MyPosts</a></li>
+
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="#">Sign in</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Register</a></li>
+                    </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <main>
+
+
+
+    <main class="container min-vh-100 d-flex flex-column align-items-center justify-content-start ">
         <div>
             <div class="row">
                 <p id="errorMessage"></p>
@@ -37,13 +48,12 @@
             </div>
         </div>
     </main>
-    <footer class="row-footer">
-        <div class="footr-column">
-            <a href="index.html">Home</a>
-            <a href="#">Terms & Condition</a>
-        </div>
-    </footer>
 
+    <div class="bg-primary mt-auto">
+        <footer class="container-fluid text-white py-4">
+            <p class="text-dark">Home</p>
+        </footer>
+    </div>
     <script type="module" src="js/blog-feed-main.js"></script>
 </body>
 
