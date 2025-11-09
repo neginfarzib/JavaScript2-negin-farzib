@@ -11942,8 +11942,9 @@ textarea.form-control-lg {
   height: 5px;
 }
 
-.create-post-button {
-  background-color: #cc7eb5;
+.navbar-nav .nav-link.active {
+  font-weight: 600;
+  font-size: 1.1rem;
 }
 
 /*# sourceMappingURL=style.css.map */
