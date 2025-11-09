@@ -22,8 +22,55 @@ export async function dateSortedAllPosts() {
   return sortedAllPosts;
 }
 
+function showSkeletons(container, count = 3) {
+  container.innerHTML = '';
+  for (let i = 0; i < count; i++) {
+    const skeletonCard = document.createElement('div');
+    skeletonCard.classList.add('card', 'w-75', 'mx-auto', 'shadow', 'mb-4');
+    skeletonCard.innerHTML = `
+      <div class="card-body">
+        <!-- Author placeholder -->
+        <div class="d-flex align-items-center mb-2 placeholder-glow">
+          <span class="placeholder rounded-circle me-2" style="width:32px; height:32px;"></span>
+          <span class="placeholder col-4 mb-0"></span>
+        </div>
+
+        <!-- Date placeholder -->
+        <p class="text-muted small mb-3 placeholder-glow">
+          <span class="placeholder col-3"></span>
+        </p>
+
+        <!-- Title placeholder -->
+        <h6 class="fw-semibold placeholder-glow">
+          <span class="placeholder col-6"></span>
+        </h6>
+
+        <!-- Image placeholder -->
+        <div class="placeholder-glow mb-2">
+          <span class="placeholder col-12" style="height: 200px; display:block; border-radius:0.25rem;"></span>
+        </div>
+
+        <!-- Content placeholder -->
+        <p class="card-text placeholder-glow">
+          <span class="placeholder col-12 mb-1"></span>
+          <span class="placeholder col-12 mb-1"></span>
+          <span class="placeholder col-10"></span>
+        </p>
+
+        <!-- Read more placeholder -->
+        <p class="text-primary fw-semibold placeholder-glow">
+          <span class="placeholder col-3"></span>
+        </p>
+      </div>
+    `;
+    container.appendChild(skeletonCard);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   const blogPostsThumbnail = document.getElementById('blog-post-container');
+
+  showSkeletons(blogPostsThumbnail);
 
   const posts = await dateSortedAllPosts();
   console.log(posts.length);
@@ -49,6 +96,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     searchPostsBtn.addEventListener('click', async function (e) {
       e.preventDefault();
       const searchInput = document.getElementById('searchPosts').value.trim();
+
+      showSkeletons(blogPostsThumbnail);
+
       const searchPostsList = await searchPostAPI(searchInput);
       displayPosts(searchPostsList);
     });
