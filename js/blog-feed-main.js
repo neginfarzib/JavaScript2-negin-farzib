@@ -24,7 +24,6 @@ export async function dateSortedAllPosts() {
 
 document.addEventListener('DOMContentLoaded', async () => {
   const blogPostsThumbnail = document.getElementById('blog-post-container');
-  const errorMessageElement = document.getElementById('errorMessage');
 
   const posts = await dateSortedAllPosts();
   console.log(posts.length);
@@ -32,12 +31,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   function displayPosts(posts) {
     blogPostsThumbnail.innerHTML = '';
-    blogPostsThumbnail.classList.add(
-      'min-vh-100',
-      'd-flex',
-      'flex-column',
-      'align-items-center'
-    );
 
     const inputSearchPostsDiv = document.createElement('div');
     inputSearchPostsDiv.classList.add('w-75', 'mx-auto', 'mb-4', 'my-4');
@@ -146,11 +139,5 @@ document.addEventListener('DOMContentLoaded', async () => {
       // Append the product box to the container
       blogPostsThumbnail.appendChild(blogThumbnail);
     });
-    const errorMessageDiv = document.createElement('div');
-    errorMessageDiv.classList.add('row');
-    const errorMessageP = document.createElement('p');
-    errorMessageP.id = 'errorMessage';
-    errorMessageDiv.appendChild(errorMessageP);
-    blogPostsThumbnail.appendChild(errorMessageDiv);
   }
 });

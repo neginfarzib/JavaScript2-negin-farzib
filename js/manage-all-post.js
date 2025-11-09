@@ -93,12 +93,6 @@ export async function searchPostAPI(searchInput) {
     return data.data;
   } catch (error) {
     const errorMessageElement = document.getElementById('errorMessage');
-    errorMessageElement.classList.add(
-      'alert',
-      'alert-danger',
-      'mt-4',
-      'd-none'
-    );
     errorMessageElement.style.display = 'block';
     errorMessageElement.innerHTML = error;
 
