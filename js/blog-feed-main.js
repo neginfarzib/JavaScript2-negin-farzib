@@ -1,129 +1,193 @@
-import {allPosts, searchPostAPI} from "./manage-all-post.js";
-const base_url = "https://v2.api.noroff.dev";
-const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric' , minute: 'numeric', hour12: false};
+import { allPosts, searchPostAPI } from './manage-all-post.js';
+const base_url = 'https://v2.api.noroff.dev';
+const options = {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  hour: 'numeric',
+  minute: 'numeric',
+  hour12: false,
+};
 
 /**
  * Fetching all posts. Then sort them by date
  *
  * @return {Promise<object[]>} A promise that resolves to an array of post objects sorted by date.
-* */
-export async function dateSortedAllPosts(){
-    let posts = await allPosts();
-    let sortedAllPosts = posts.data.sort((a, b) => new Date(b.created) - new Date(a.created));
-    return sortedAllPosts;
+ * */
+export async function dateSortedAllPosts() {
+  let posts = await allPosts();
+  let sortedAllPosts = posts.data.sort(
+    (a, b) => new Date(b.created) - new Date(a.created)
+  );
+  return sortedAllPosts;
 }
 
-document.addEventListener('DOMContentLoaded',async () => {
-    const blogPostsThumbnail = document.getElementById('blog-post-container');
-    const errorMessageElement = document.getElementById('errorMessage');
+function showSkeletons(container, count = 3) {
+  container.innerHTML = '';
+  for (let i = 0; i < count; i++) {
+    const skeletonCard = document.createElement('div');
+    skeletonCard.classList.add('card', 'w-75', 'mx-auto', 'shadow', 'mb-4');
+    skeletonCard.innerHTML = `
+      <div class="card-body">
+        <!-- Author placeholder -->
+        <div class="d-flex align-items-center mb-2 placeholder-glow">
+          <span class="placeholder rounded-circle me-2" style="width:32px; height:32px;"></span>
+          <span class="placeholder col-4 mb-0"></span>
+        </div>
 
-    const posts = await dateSortedAllPosts();
-    console.log(posts.length)
-    displayPosts(posts);
+        <!-- Date placeholder -->
+        <p class="text-muted small mb-3 placeholder-glow">
+          <span class="placeholder col-3"></span>
+        </p>
 
-    function displayPosts(posts){
-        blogPostsThumbnail.innerHTML = '';
+        <!-- Title placeholder -->
+        <h6 class="fw-semibold placeholder-glow">
+          <span class="placeholder col-6"></span>
+        </h6>
 
-        const inputSearchPostsDiv = document.createElement('div');
-        inputSearchPostsDiv.classList.add('search-blog-thumbnail');
+        <!-- Image placeholder -->
+        <div class="placeholder-glow mb-2">
+          <span class="placeholder col-12" style="height: 200px; display:block; border-radius:0.25rem;"></span>
+        </div>
 
-        const inputBtnSearchPostsDiv = document.createElement('div');
-        inputBtnSearchPostsDiv.classList.add('search-blog-thumbnail-input-btn');
-        const inputSearchPosts = document.createElement('input');
-        inputSearchPosts.type = 'text';
-        inputSearchPosts.id = 'searchPosts';
-        inputSearchPosts.placeholder = 'Search all posts ...'
-        inputBtnSearchPostsDiv.appendChild(inputSearchPosts);
-        const searchPostsBtn = document.createElement('button');
-        searchPostsBtn.classList.add('search-blog-thumbnail-btn')
-        searchPostsBtn.textContent = 'Search';
-        searchPostsBtn.addEventListener('click', async function (e) {
-            e.preventDefault();
-            const searchInput = document.getElementById('searchPosts').value.trim()
-            const searchPostsList = await searchPostAPI(searchInput);
-            displayPosts(searchPostsList);
-        })
-        inputBtnSearchPostsDiv.appendChild(searchPostsBtn);
-        inputSearchPostsDiv.appendChild(inputBtnSearchPostsDiv);
+        <!-- Content placeholder -->
+        <p class="card-text placeholder-glow">
+          <span class="placeholder col-12 mb-1"></span>
+          <span class="placeholder col-12 mb-1"></span>
+          <span class="placeholder col-10"></span>
+        </p>
 
-        const editLineSeperator = document.createElement('div');
-        editLineSeperator.classList.add("edit-line-separator");
-        inputSearchPostsDiv.appendChild(editLineSeperator);
+        <!-- Read more placeholder -->
+        <p class="text-primary fw-semibold placeholder-glow">
+          <span class="placeholder col-3"></span>
+        </p>
+      </div>
+    `;
+    container.appendChild(skeletonCard);
+  }
+}
 
-        blogPostsThumbnail.appendChild(inputSearchPostsDiv);
+document.addEventListener('DOMContentLoaded', async () => {
+  const blogPostsThumbnail = document.getElementById('blog-post-container');
 
+  showSkeletons(blogPostsThumbnail);
 
-        
-        const maxPosts = posts.length;
-        const postToShow = posts.slice(0, maxPosts);
+  const posts = await dateSortedAllPosts();
+  console.log(posts.length);
+  displayPosts(posts);
 
-        postToShow.forEach(post =>{
-            const blogThumbnail = document.createElement('div');
-            blogThumbnail.classList.add('blog-thumbnail');
+  function displayPosts(posts) {
+    blogPostsThumbnail.innerHTML = '';
 
-            if(post.author){
-                const authorHref = document.createElement('a');
-                authorHref.href = 'post/user-posts.html?name-of-user=' + post.author.name;
+    const inputSearchPostsDiv = document.createElement('div');
+    inputSearchPostsDiv.classList.add('w-75', 'mx-auto', 'mb-4', 'my-4');
 
-                const author = document.createElement('div');
+    const inputBtnSearchPostsDiv = document.createElement('div');
+    inputBtnSearchPostsDiv.classList.add('d-flex');
+    const inputSearchPosts = document.createElement('input');
+    inputSearchPosts.type = 'text';
+    inputSearchPosts.id = 'searchPosts';
+    inputSearchPosts.placeholder = 'Search all posts ...';
+    inputSearchPosts.classList.add('form-control', 'me-2');
+    inputBtnSearchPostsDiv.appendChild(inputSearchPosts);
+    const searchPostsBtn = document.createElement('button');
+    searchPostsBtn.classList.add('btn', 'btn-primary', 'px-4');
+    searchPostsBtn.textContent = 'Search';
+    searchPostsBtn.addEventListener('click', async function (e) {
+      e.preventDefault();
+      const searchInput = document.getElementById('searchPosts').value.trim();
 
-                const postAuthorIcon = document.createElement('img');
-                postAuthorIcon.src = 'assets/person-icon.svg';
-                postAuthorIcon.alt = 'author-icon'
-                author.appendChild(postAuthorIcon);
+      showSkeletons(blogPostsThumbnail);
 
-                const postAuthor = document.createElement('h4');
-                postAuthor.textContent = post.author.name;
-                author.appendChild(postAuthor)
+      const searchPostsList = await searchPostAPI(searchInput);
+      displayPosts(searchPostsList);
+    });
+    inputBtnSearchPostsDiv.appendChild(searchPostsBtn);
+    inputSearchPostsDiv.appendChild(inputBtnSearchPostsDiv);
 
-                authorHref.appendChild(author)
-                blogThumbnail.appendChild(authorHref);
-            }
+    const editLineSeperator = document.createElement('div');
+    editLineSeperator.classList.add('mt-4', 'border-5');
+    inputSearchPostsDiv.appendChild(editLineSeperator);
 
-            const postCreatedTime = document.createElement('p');
-            postCreatedTime.classList.add('blog-thumbnail-created-time-p')
-            const date = new Date(post.created)
-            postCreatedTime.textContent = date.toLocaleDateString('en-US', options);
-            blogThumbnail.appendChild(postCreatedTime);
+    blogPostsThumbnail.appendChild(inputSearchPostsDiv);
 
-            const blogThumbnailHref = document.createElement('a');
-            blogThumbnailHref.href = 'post/index.html?blog-post-id='+post.id;
-            // blogThumbnailHref.target = '_blank';
+    const maxPosts = posts.length;
+    const postToShow = posts.slice(0, maxPosts);
 
-            const postTitle = document.createElement('h6');
-            postTitle.textContent = post.title;
-            blogThumbnailHref.appendChild(postTitle)
-            blogThumbnail.appendChild(blogThumbnailHref);
+    postToShow.forEach((post) => {
+      const blogThumbnail = document.createElement('div');
+      blogThumbnail.classList.add('card', 'w-75', 'mx-auto', 'shadow', 'mb-4');
 
-            if(post.media){
-                const postImage = document.createElement('img');
-                postImage.classList.add('blog-thumbnail-img')
-                postImage.src = post.media?.url || '';
-                postImage.alt = post.media?.alt || '';
-                blogThumbnailHref.appendChild(postImage)
-                blogThumbnail.appendChild(blogThumbnailHref);
-            }
+      const blogThumbnailDiv = document.createElement('div');
+      blogThumbnailDiv.classList.add('card-body');
 
-            const postContent = document.createElement('p');
-            postContent.textContent = post.body?.split(/\s+/).slice(0, 50).join(' ') || '';
-            blogThumbnailHref.appendChild(postContent);
-            blogThumbnail.appendChild(blogThumbnailHref);
+      if (post.author) {
+        const authorHref = document.createElement('a');
+        authorHref.classList.add(
+          'text-decoration-none',
+          'text-dark',
+          'd-flex',
+          'align-items-center',
+          'mb-2'
+        );
+        authorHref.href =
+          'post/user-posts.html?name-of-user=' + post.author.name;
 
-            const postReadMore = document.createElement('p');
-            postReadMore.textContent = 'Read more...';
-            blogThumbnailHref.appendChild(postReadMore);
-            blogThumbnail.appendChild(blogThumbnailHref);
+        const postAuthorIcon = document.createElement('img');
+        postAuthorIcon.src = 'assets/person-icon.svg';
+        postAuthorIcon.alt = 'author-icon';
+        postAuthorIcon.width = '32';
+        postAuthorIcon.height = '32';
+        postAuthorIcon.classList.add('me-2');
+        authorHref.appendChild(postAuthorIcon);
 
+        const postAuthor = document.createElement('h4');
+        postAuthor.classList.add('card-title', 'mb-0');
+        postAuthor.textContent = post.author.name;
+        authorHref.appendChild(postAuthor);
 
-            // Append the product box to the container
-            blogPostsThumbnail.appendChild(blogThumbnail);
-        });
-        const errorMessageDiv = document.createElement('div');
-        errorMessageDiv.classList.add('row');
-        const errorMessageP = document.createElement('p');
-        errorMessageP.id='errorMessage';
-        errorMessageDiv.appendChild(errorMessageP);
-        blogPostsThumbnail.appendChild(errorMessageDiv);
+        blogThumbnailDiv.appendChild(authorHref);
+      }
 
-    }
-})
+      const postCreatedTime = document.createElement('p');
+      postCreatedTime.classList.add('text-muted', 'small', 'mb-3');
+      const date = new Date(post.created);
+      postCreatedTime.textContent = date.toLocaleDateString('en-US', options);
+      blogThumbnailDiv.appendChild(postCreatedTime);
+
+      const blogThumbnailHref = document.createElement('a');
+      blogThumbnailHref.classList.add('text-decoration-none', 'text-dark');
+      blogThumbnailHref.href = 'post/index.html?blog-post-id=' + post.id;
+      // blogThumbnailHref.target = '_blank';
+
+      const postTitle = document.createElement('h6');
+      postTitle.classList.add('fw-semibold');
+      postTitle.textContent = post.title;
+      blogThumbnailHref.appendChild(postTitle);
+
+      if (post.media) {
+        const postImage = document.createElement('img');
+        postImage.classList.add('card-img-top', 'rounded', 'mb-2');
+        postImage.src = post.media?.url || '';
+        postImage.alt = post.media?.alt || '';
+        blogThumbnailHref.appendChild(postImage);
+      }
+
+      const postContent = document.createElement('p');
+      postContent.classList.add('card-text');
+      postContent.textContent =
+        post.body?.split(/\s+/).slice(0, 50).join(' ') || '';
+      blogThumbnailHref.appendChild(postContent);
+
+      const postReadMore = document.createElement('p');
+      postReadMore.classList.add('text-primary', 'fw-semibold');
+      postReadMore.textContent = 'Read more...';
+      blogThumbnailHref.appendChild(postReadMore);
+      blogThumbnailDiv.appendChild(blogThumbnailHref);
+
+      blogThumbnail.appendChild(blogThumbnailDiv);
+      // Append the product box to the container
+      blogPostsThumbnail.appendChild(blogThumbnail);
+    });
+  }
+});
