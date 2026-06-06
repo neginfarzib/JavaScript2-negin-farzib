@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded',async () => {
             blogThumbnail.classList.add('blog-thumbnail');
 
             const blogThumbnailHref = document.createElement('a');
-            blogThumbnailHref.href = '../post/index.html?blog-post-id='+post.id;
+            blogThumbnailHref.href = `../post/index.html?blog-post-id=${post.id}`;
 
             const postTitle = document.createElement('h4');
             postTitle.textContent = post.title;

@@ -31,8 +31,7 @@ export async function createBlogPost(title, body, url, alt, tags) {
 
 
     try {
-        const nameUser =localStorage.getItem('name');
-        let url = `${base_url}/social/posts`;
+        const url = `${base_url}/social/posts`;
         const response = await fetch(url, {
             method: 'POST',
             headers: {
@@ -44,14 +43,9 @@ export async function createBlogPost(title, body, url, alt, tags) {
         });
 
         if (response.ok) {
-            const result = await response.json();
             window.location.href = '../post/manage-all-post.html';
         } else {
-
             const error = await response.json();
-            console.log('error.length:' + error.length + 'error ' +  error);
-
-
             let messages = '';
             for (let i = 0; i < error.errors.length; i++) {
                 messages += error.errors[i].message + '<br>';

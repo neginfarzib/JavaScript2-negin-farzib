@@ -1,5 +1,4 @@
 const base_url = "https://v2.api.noroff.dev";
-const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
 /**
  *  Fetching a blog post by ID

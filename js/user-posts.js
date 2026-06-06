@@ -5,7 +5,7 @@ const base_url = "https://v2.api.noroff.dev";
  * */
 export async function followUser(name) {
     try {
-        let url = `${base_url}/social/profiles/${name}/follow`;
+        const url = `${base_url}/social/profiles/${name}/follow`;
         const response = await fetch(url, {
             method: 'PUT',
             headers: {
@@ -35,7 +35,7 @@ export async function followUser(name) {
  * */
 export async function unFollowUser(name) {
     try {
-        let url = `${base_url}/social/profiles/${name}/unfollow`;
+        const url = `${base_url}/social/profiles/${name}/unfollow`;
         const response = await fetch(url, {
             method: 'PUT',
             headers: {
@@ -73,7 +73,7 @@ export async function fetchListOfFollowing() {
                 "X-Noroff-API-Key": '4f20fb44-3b03-4fc3-bc21-5a7fb98d9816'
             }
         }
-        let url = `${base_url}/social/profiles/${nameUser}?_following=true`;
+        const url = `${base_url}/social/profiles/${nameUser}?_following=true`;
 
 
         const response = await fetch(url, option);

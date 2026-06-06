@@ -1,5 +1,4 @@
 import {allPosts, searchPostAPI} from "./manage-all-post.js";
-const base_url = "https://v2.api.noroff.dev";
 const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric' , minute: 'numeric', hour12: false};
 
 /**
@@ -8,17 +7,15 @@ const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric
  * @return {Promise<object[]>} A promise that resolves to an array of post objects sorted by date.
 * */
 export async function dateSortedAllPosts(){
-    let posts = await allPosts();
-    let sortedAllPosts = posts.data.sort((a, b) => new Date(b.created) - new Date(a.created));
+    const posts = await allPosts();
+    const sortedAllPosts = posts.data.sort((a, b) => new Date(b.created) - new Date(a.created));
     return sortedAllPosts;
 }
 
 document.addEventListener('DOMContentLoaded',async () => {
     const blogPostsThumbnail = document.getElementById('blog-post-container');
-    const errorMessageElement = document.getElementById('errorMessage');
 
     const posts = await dateSortedAllPosts();
-    console.log(posts.length)
     displayPosts(posts);
 
     function displayPosts(posts){

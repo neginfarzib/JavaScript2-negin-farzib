@@ -1,6 +1,4 @@
-import {deleteBlogPost} from "./manage-all-post.js";
 const base_url = "https://v2.api.noroff.dev";
-let postId = '';
 
 /**
  * Edit blog post
@@ -34,7 +32,7 @@ export async function editBlogPost(title, body, url, alt, tags,postId) {
     }
 
     try {
-        let url = `${base_url}/social/posts/${postId}`;
+        const url = `${base_url}/social/posts/${postId}`;
         const response = await fetch(url, {
             method: 'PUT',
             headers: {
@@ -46,14 +44,9 @@ export async function editBlogPost(title, body, url, alt, tags,postId) {
         });
 
         if (response.ok) {
-            const result = await response.json();
             window.location.href = '../post/manage-all-post.html';
         } else {
-
             const error = await response.json();
-            console.log('error.length:' + error.length + 'error ' +  error);
-
-
             let messages = '';
             for (let i = 0; i < error.errors.length; i++) {
                 messages += error.errors[i].message + '<br>';

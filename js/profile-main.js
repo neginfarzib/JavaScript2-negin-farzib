@@ -2,7 +2,7 @@ import {fetchUserProfile} from './profile.js';
 import {updateUserProfile} from "./auth.js";
 
 
-let userProfile = await fetchUserProfile();
+const userProfile = await fetchUserProfile();
 document.getElementById('profile-name').value = userProfile.name;
 document.getElementById('profile-email').value = userProfile.email;
 
@@ -23,7 +23,6 @@ form.addEventListener('submit', (e) => {
 
     if(confirm('Are you to update user profile?')) {
         const name = document.getElementById('profile-name').value.trim();
-        const email = document.getElementById('profile-email').value.trim();
         // const password = document.getElementById('profile-password').value;
 
         const bio = document.getElementById('profile-bio').value.trim();
@@ -32,7 +31,7 @@ form.addEventListener('submit', (e) => {
 
         const bannerUrl = document.getElementById('profile-bannerUrl').value.trim();
         const bannerAltText = document.getElementById('profile-bannerAltText').value.trim();
-        updateUserProfile(name, email, bio, avatarUrl, avatarAltText, bannerUrl, bannerAltText);
+        updateUserProfile(name, bio, avatarUrl, avatarAltText, bannerUrl, bannerAltText);
     }
 
 });

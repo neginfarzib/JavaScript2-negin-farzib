@@ -8,7 +8,7 @@ const base_url = "https://v2.api.noroff.dev";
  */
 async function sendAuthRequest(endpoint, data) {
     try {
-        const response = await fetch(base_url + endpoint, {
+        const response = await fetch(`${base_url}${endpoint}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
@@ -39,7 +39,7 @@ async function sendAuthRequest(endpoint, data) {
             const error = await response.json();
             let messages = "";
             for (let i = 0; i < error.errors.length; i++) {
-                messages += error.errors[i].message + "<br>";
+                messages += `${error.errors[i].message}<br>`;
             }
             messages =
                 !messages || messages.length === 0
@@ -53,7 +53,7 @@ async function sendAuthRequest(endpoint, data) {
         }
     } catch (err) {
         console.error("An error occurred:", err);
-        alert("An error occurred: " + err);
+        alert(`An error occurred: ${err}`);
     }
 
 }/**
@@ -64,7 +64,7 @@ async function sendAuthRequest(endpoint, data) {
  */
 async function sendAuthRequestUpdateUserProfile(endpoint, data) {
     try {
-        const response = await fetch(base_url + endpoint, {
+        const response = await fetch(`${base_url}${endpoint}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -75,16 +75,12 @@ async function sendAuthRequestUpdateUserProfile(endpoint, data) {
         });
 
         if (response.ok) {
-            const result = await response.json();
-            const token = result.data.accessToken;
-            const nameApi = result.data.name;
-
             window.location.href = "../post/manage-all-post.html";
         } else {
             const error = await response.json();
             let messages = "";
             for (let i = 0; i < error.errors.length; i++) {
-                messages += error.errors[i].message + "<br>";
+                messages += `${error.errors[i].message}<br>`;
             }
             messages =
                 !messages || messages.length === 0
@@ -98,7 +94,7 @@ async function sendAuthRequestUpdateUserProfile(endpoint, data) {
         }
     } catch (err) {
         console.error("An error occurred:", err);
-        alert("An error occurred: " + err);
+        alert(`An error occurred: ${err}`);
     }
 }
 
@@ -155,7 +151,6 @@ export function loginUser(email, password) {
 /**
  * Register a new user.
  * @param {string} name - The user's name.
- * @param {string} email - The user's email.
  * @param {string} bio - The user's bio.
  * @param {string} avatarUrl - The user's avatarUrl.
  * @param {string} avatarAltText - The user's avatarAltText.
@@ -163,7 +158,7 @@ export function loginUser(email, password) {
  * @param {string} bannerAltText - The user's bannerAltText.
  * @returns {void}
  */
-export function updateUserProfile(name, email, bio, avatarUrl, avatarAltText, bannerUrl, bannerAltText) {
+export function updateUserProfile(name, bio, avatarUrl, avatarAltText, bannerUrl, bannerAltText) {
     const userData = {
     }
 
