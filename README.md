@@ -6,10 +6,23 @@
 - HTML  
 - plain CSS. No CSS lib or framework 
 ## Run the project
-No need for any special way to run since it is plain JavaScript + HTML + CSS.
-Just either can run it with VS Code live server
-- Live Server , By Ritwick Dey
-- Simply open pages by a browser
+- Run from VS Code.
+
+  No need for any special way to run since it is plain JavaScript + HTML + CSS.
+  Just either can run it with VS Code live server
+  - Live Server , By Ritwick Dey
+  - Simply open pages by a browser
+- Run command line
+
+  Also possible to run from command line
+  - npm install
+    - Install dependencies
+  - npm run build
+    - Compile styles (one-time)
+  - npm run watch
+    - watch styles while developing
+  - npx http-server .
+    - Start a local server
 ## Usage instruction 
 - Home
   - Here you can see all users posts. No need for authentication

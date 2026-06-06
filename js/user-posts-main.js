@@ -92,13 +92,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     editPostsThumbnail.appendChild(errorMessageDiv);
   }
 
-  const userAllPostsFollow = document.getElementById(
-    'user-all-posts-follow-btn'
+  const userAllPostsFollow = document.querySelector(
+    '.user-all-posts-follow-btn'
   );
   if (userAllPostsFollow) {
-    document
-      .getElementById('user-all-posts-follow-btn')
-      .addEventListener('click', function (e) {
+    userAllPostsFollow.addEventListener('click', function (e) {
         e.preventDefault();
         localStorage.setItem(
           'callbackLocation',
@@ -169,7 +167,7 @@ async function checkUserIsFollowed() {
     const profileAndFollowing = await fetchListOfFollowing();
     profileAndFollowing.following.forEach((follow) => {
       if (nameOfUser === follow.name) {
-        const btn = document.getElementById('user-all-posts-follow-btn');
+        const btn = document.querySelector('.user-all-posts-follow-btn');
         if (btn) {
           btn.textContent = 'Unfollow';
           btn.style.backgroundColor = '#5b90e5';
@@ -185,7 +183,7 @@ async function checkUserIsFollowed() {
  * @param {string} name - name of the user
  * */
 function handlingFollowButton(name) {
-  const btn = document.getElementById('user-all-posts-follow-btn');
+  const btn = document.querySelector('.user-all-posts-follow-btn');
   if (btn) {
     if (btn.textContent === 'Follow') {
       followUser(name);
